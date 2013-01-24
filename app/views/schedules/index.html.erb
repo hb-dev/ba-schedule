@@ -1,0 +1,24 @@
+<%= form_for @schedule, :format => "ics", :html => { :class => 'form-horizontal' } do |f|%>
+	<%= render "shared/error_messages", :target => @schedule %>
+	<div class="control-group">
+		<%= f.label :student_id, "Matrikelnr.", :class => 'control-label'%>
+		<div class="controls">
+			<%= f.text_field :student_id, :class => "span2" %>	
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.label :start_date, "Termine ab", :class => 'control-label'%>
+		<div class="controls">
+			<%= f.text_field :start_date, :class => "span2 datepicker" %>
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.label :end_date, "Termine bis", :class => 'control-label'%>
+		<div class="controls">
+			<%= f.text_field :end_date, :class => "span2 datepicker" %>
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.submit ".ics generieren", :class => "btn btn-large btn-success submit" %>
+	</div>		
+<% end%>
