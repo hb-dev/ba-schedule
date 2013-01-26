@@ -65,7 +65,7 @@ class SchedulesController < ApplicationController
         end 
         @calendar_string = @calendar.to_ical
         #render :text => @calendar_string
-        send_data(@calendar_string, :type => 'text/calendar', :disposition => 'inline; filename=stundenplan.ics', :filename=>'stundenplan.ics')      
+        send_data(@calendar_string, :type => 'text/calendar; charset=UTF-8', :disposition => 'inline; filename=stundenplan.ics', :filename=>'stundenplan.ics')      
       else 
         redirect_to schedules_path, :notice => "Es wurden keine Einträge gefunden!"     
       end         
@@ -134,7 +134,7 @@ class SchedulesController < ApplicationController
         end 
         @calendar_string = @calendar.to_ical
         #render :text => @calendar_string
-        send_data(@calendar_string, :type => 'text/calendar', :disposition => 'inline; filename=stundenplan.ics', :filename=>'stundenplan.ics')      
+        send_data(@calendar_string, :type => 'text/calendar; charset=UTF-8', :disposition => 'inline; filename=stundenplan.ics', :filename=>'stundenplan.ics')      
       else 
         redirect_to schedules_path, :notice => "Es wurden keine Einträge gefunden!"     
       end             
