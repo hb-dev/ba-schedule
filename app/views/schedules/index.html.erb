@@ -19,6 +19,7 @@
 		</div>
 	</div>
 	<div class="control-group">
-		<%= f.submit ".ics generieren", :class => "btn btn-large btn-success submit" %>
+		<%= f.submit ".ics generieren", :class => "btn btn-large btn-success submit" %> <span class="or">oder</span>
+		<%= link_to "Abo generieren", subscribe_schedules_path, :class => "btn btn-large btn-primary submit", :remote => true %>
 	</div>		
 <% end%>

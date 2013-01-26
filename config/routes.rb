@@ -6,6 +6,8 @@ BaSchedule::Application.routes.draw do
   resources :schedules do
     collection do
         get 'imprint'
+        get 'subscribe'
+        get 'subscription'
       end
   end
 

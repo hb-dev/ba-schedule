@@ -1,0 +1,17 @@
+var url;
+var student_id;
+
+student_id = $("#schedule_student_id").val()
+url = "http://ba-stundenplan.herokuapp.com/schedules/subscription?student_id=" + student_id;
+
+if (student_id == '') {
+	$("#subscribe_modal .modal-body").html("<%= escape_javascript(render "subscribe_error", :formats => [:html]) %>")
+} else {
+	$("#subscribe_modal .modal-body").html("<%= escape_javascript(render "subscribe", :formats => [:html]) %>");
+	$("#subscribe_modal #subsribe_input").val(url);
+}
+
+$("#subscribe_modal .modal-footer").hide();
+$("#subscribe_modal .form-actions").hide();
+$("#subscribe_modal").modal();
+
