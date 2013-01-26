@@ -1,4 +1,5 @@
 # encoding: UTF-8
+$KCODE = 'u'
 class SchedulesController < ApplicationController
 
   layout :set_layout
