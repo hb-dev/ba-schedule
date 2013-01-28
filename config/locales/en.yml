@@ -5,4 +5,4 @@ en:
   hello: "Hello world"
   time:
     formats:
-      ical: "%Y%m%dT%H%M%SZ"
+      ical: "%Y%m%dT%H%M%S"

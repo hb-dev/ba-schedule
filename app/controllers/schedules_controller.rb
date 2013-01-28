@@ -126,8 +126,8 @@ class SchedulesController < ApplicationController
         @lessons.each do |lesson|
           @calendar.event do
               description lesson["title"]
-              dtstart     I18n.l(Time.at(lesson["start"] + 1.hour), :format => :ical)
-              dtend       I18n.l(Time.at(lesson["end"] + 1.hour), :format => :ical)
+              dtstart     I18n.l(Time.at(lesson["start"]), :format => :ical)
+              dtend       I18n.l(Time.at(lesson["end"]), :format => :ical)
               location    lesson["room"]
               summary     "#{lesson['title']} #{lesson['instructor']} #{lesson['room']}"       
           end
