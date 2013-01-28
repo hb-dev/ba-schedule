@@ -36,30 +36,31 @@ class SchedulesController < ApplicationController
       if @lessons 
         @calendar = Calendar.new
         @calendar.custom_property("X-WR-CALNAME;VALUE=TEXT", "BA Vorlesungsplan")
-        @calendar.timezone do
-          timezone_id             "W. Europe Standard Time"
-        
-          daylight do
-            timezone_offset_from  "+0100"
-            timezone_offset_to    "+0200"
-            timezone_name         "CEST"
-            dtstart               "16010325T020000"
-            add_recurrence_rule   "FREQ=YEARLY;BYDAY=-1SU;BYMONTH=3"
-          end
-        
-          standard do
-            timezone_offset_from  "+0200"
-            timezone_offset_to    "+0100"
-            timezone_name         "CET"
-            dtstart               "16011028T030000"
-            add_recurrence_rule   "FREQ=YEARLY;BYDAY=-1SU;BYMONTH=10"
-          end
-        end        
+        @calendar.custom_property("X-WR-TIMEZONE;VALUE=TEXT", "Europe/London")
+        # @calendar.timezone do
+          # timezone_id             "W. Europe Standard Time"
+#         
+          # daylight do
+            # timezone_offset_from  "+0100"
+            # timezone_offset_to    "+0200"
+            # timezone_name         "CEST"
+            # dtstart               "16010325T020000"
+            # add_recurrence_rule   "FREQ=YEARLY;BYDAY=-1SU;BYMONTH=3"
+          # end
+#         
+          # standard do
+            # timezone_offset_from  "+0200"
+            # timezone_offset_to    "+0100"
+            # timezone_name         "CET"
+            # dtstart               "16011028T030000"
+            # add_recurrence_rule   "FREQ=YEARLY;BYDAY=-1SU;BYMONTH=10"
+          # end
+        # end        
         @lessons.each do |lesson|
           @calendar.event do
               description lesson["title"]
-              dtstart     I18n.l(Time.at(lesson["start"] + 1.hour), :format => :ical)
-              dtend       I18n.l(Time.at(lesson["end"]) + 1.hour, :format => :ical)
+              dtstart     I18n.l(Time.at(lesson["start"]), :format => :ical)
+              dtend       I18n.l(Time.at(lesson["end"]), :format => :ical)
               location    lesson["room"]
               summary     "#{lesson['title']} #{lesson['instructor']} #{lesson['room']}"       
           end
