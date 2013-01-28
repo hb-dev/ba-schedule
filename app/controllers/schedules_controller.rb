@@ -106,9 +106,8 @@ class SchedulesController < ApplicationController
       
       if @lessons 
         @calendar = Calendar.new
-        @calendar.product_id = "-//ba-stundenplan.herokuapp.com//iCal 1.0//DE"
-        @calendar.custom_property("X-WR-CALNAME;VALUE=TEXT", "BA-Vorlesungsplan")
-        @calendar.custom_property("X-WR-TIMEZONE;VALUE=TEXT", "Europe/London")        
+        # @calendar.custom_property("X-WR-CALNAME;VALUE=TEXT", "BA-Vorlesungsplan")
+        # @calendar.custom_property("X-WR-TIMEZONE;VALUE=TEXT", "Europe/Berlin")        
         # @calendar.timezone do
           # timezone_id             "W. Europe Standard Time"
 #         
