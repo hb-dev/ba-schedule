@@ -7,6 +7,14 @@
 		</div>
 	</div>
 	<div class="control-group">
+		<%= f.label :hash_string, :class => 'control-label' do %>
+			Hash <a href="<%= url_for asset_path("BA_Stundenplan2CAL.pdf") %>"><i class="icon icon-question-sign"></i></a>
+		<% end %>
+		<div class="controls">
+			<%= f.text_field :hash_string, :class => "span2" %>	
+		</div>
+	</div>
+	<div class="control-group">
 		<%= f.label :start_date, "Termine ab", :class => 'control-label'%>
 		<div class="controls">
 			<%= f.text_field :start_date, :class => "span2 datepicker" %>

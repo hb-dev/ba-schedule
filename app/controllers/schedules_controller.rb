@@ -20,9 +20,10 @@ class SchedulesController < ApplicationController
     if @schedule.save
       start_date = (@schedule.start_date.beginning_of_day - 1.hour).to_i
       end_date = (@schedule.end_date.end_of_day - 1.hour + 1.second).to_i
+      hash_string = params[:hash_string]
       
       uri = URI.parse("https://selfservice.campus-dual.de/room/json")
-      @params = {'userid' => @schedule.student_id, 'start' => start_date, 'end' => end_date, '_' => Time.now.to_i}
+      @params = {'userid' => @schedule.student_id, 'start' => start_date, 'end' => end_date, '_' => Time.now.to_i, 'hash' => hash_string}
       http = Net::HTTP.new(uri.host, uri.port) 
       http.use_ssl = (uri.scheme == 'https')
       request = Net::HTTP::Get.new(uri.path) 
@@ -89,11 +90,12 @@ class SchedulesController < ApplicationController
   def subscription
     if params[:student_id]
       student_id = params[:student_id]
+      hash_string = params[:hash_string]
       start_date = Time.now.beginning_of_day.to_i
       end_date = (start_date + 6.months).to_i
       
       uri = URI.parse("https://selfservice.campus-dual.de/room/json")
-      params = {'userid' => student_id, 'start' => start_date, 'end' => end_date, '_' => Time.now.to_i}
+      params = {'userid' => student_id, 'start' => start_date, 'end' => end_date, '_' => Time.now.to_i, 'hash' => hash}
       http = Net::HTTP.new(uri.host, uri.port) 
       http.use_ssl = (uri.scheme == 'https')
       request = Net::HTTP::Get.new(uri.path) 
