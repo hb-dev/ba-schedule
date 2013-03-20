@@ -95,7 +95,7 @@ class SchedulesController < ApplicationController
       end_date = (start_date + 6.months).to_i
       
       uri = URI.parse("https://selfservice.campus-dual.de/room/json")
-      params = {'userid' => student_id, 'start' => start_date, 'end' => end_date, '_' => Time.now.to_i, 'hash' => hash}
+      params = {'userid' => student_id, 'start' => start_date, 'end' => end_date, '_' => Time.now.to_i, 'hash' => hash_string}
       http = Net::HTTP.new(uri.host, uri.port) 
       http.use_ssl = (uri.scheme == 'https')
       request = Net::HTTP::Get.new(uri.path) 
