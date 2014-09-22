@@ -1,3 +1,5 @@
-== Export-Tool Studenplan Berufsakademie Sachsen - Dresden
+== Export-Tool Studenplan Berufsakademie Dresden
+
+Erzeugt eine .ics-Datei mit allen zukünftigen Vorlesungen eines Studenten der Berufsakademie Dresden.
 
 http://ba-stundenplan.herokuapp.com/
