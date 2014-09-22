@@ -33,7 +33,7 @@ class SchedulesController < ApplicationController
       @response = http.request(request)
       
       @lessons = JSON.parse(@response.body).reject! { |lesson| lesson["start"] < start_date || lesson["start"] > end_date } unless @response.header["content-length"]
-      
+      puts @lessons
       if @lessons 
         @calendar = Calendar.new
         @calendar.custom_property("X-WR-CALNAME;VALUE=TEXT", "BA Vorlesungsplan")
@@ -91,11 +91,12 @@ class SchedulesController < ApplicationController
     if params[:student_id]
       student_id = params[:student_id]
       hash_string = params[:hash_string]
-      start_date = Time.now.beginning_of_day.to_i
-      end_date = (start_date + 6.months).to_i
+      start_date = params[:start]#Time.now.beginning_of_day.to_i
+      end_date = params[:end]#(start_date + 6.months).to_i
+      now = params[:_]
       
       uri = URI.parse("https://selfservice.campus-dual.de/room/json")
-      params = {'userid' => student_id, 'start' => start_date, 'end' => end_date, '_' => Time.now.to_i, 'hash' => hash_string}
+      params = {'userid' => student_id, 'start' => start_date, 'end' => end_date, '_' => now, 'hash' => hash_string}
       http = Net::HTTP.new(uri.host, uri.port) 
       http.use_ssl = (uri.scheme == 'https')
       request = Net::HTTP::Get.new(uri.path) 
